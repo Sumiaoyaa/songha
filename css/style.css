@@ -1,0 +1,305 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Noto Serif KR', serif;
+    background: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%);
+    color: #2c3e50;
+    min-height: 100vh;
+    overflow-x: hidden;
+    overflow-y: auto;
+    position: relative;
+}
+
+.container {
+    width: 100%;
+    min-height: 100vh;
+    position: relative;
+    overflow: hidden;
+    padding: 20px 0;
+}
+
+.hearts {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.heart {
+    position: absolute;
+    font-size: 1.5rem;
+    animation: float 12s linear infinite;
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(100vh) rotate(0deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-100px) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+.title {
+    position: relative;
+    width: 100%;
+    text-align: center;
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 30px;
+    padding-top: 20px;
+}
+
+.title-text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.korean-name {
+    font-family: "Microsoft YaHei", sans-serif;
+    font-size: 4.5rem;
+    font-weight: 700;
+    color: #1a73e8;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 0.5rem;
+    line-height: 1;
+}
+
+.other-names {
+    font-family: "Microsoft YaHei", sans-serif;
+    font-size: 1.8rem;
+    color: #5f6368;
+}
+
+.creation-date {
+    font-family: "Microsoft YaHei", sans-serif;
+    font-size: 0.9rem;
+    color: #5f6368;
+    margin-top: 0.5rem;
+}
+
+.card {
+    position: absolute;
+    width: 220px;
+    padding: 1rem;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(8px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    z-index: 200;
+    border: 1px solid rgba(66, 133, 244, 0.2);
+    left: var(--target-x);
+    top: var(--target-y);
+    transform: scale(0);
+    opacity: 0;
+    transition: all 0.5s ease;
+    transform-origin: center center;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+.card.center-active {
+    opacity: 1;
+    transform: scale(2);
+    transition: all 1.2s ease;
+}
+
+.card.move-to-heart {
+    opacity: 1;
+    transform: scale(0.8);
+    transition: all 3s ease;
+}
+
+.card.fade-out {
+    opacity: 0;
+    transform: scale(0);
+    transition: all 1s ease;
+}
+
+.message {
+    line-height: 1.5;
+    margin-bottom: 0.5rem;
+    word-break: keep-all;
+    white-space: normal;
+    width: 100%;
+}
+
+.korean-message {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 1.1rem;
+    color: #1a73e8;
+}
+
+.chinese-message {
+    font-family: 'Ma Shan Zheng', cursive;
+    font-size: 1rem;
+    color: #1a73e8;
+}
+
+.english-message {
+    font-family: 'Dancing Script', cursive;
+    font-size: 0.9rem;
+    color: #1a73e8;
+}
+
+.language-indicator {
+    font-size: 0.7rem;
+    color: #1a73e8;
+    margin-top: 0.5rem;
+    padding: 0.2rem 0.6rem;
+    background: rgba(66, 133, 244, 0.1);
+    border-radius: 15px;
+}
+
+/* 卡片出现时的心形特效 */
+.card-hearts {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 199;
+}
+
+.card-heart {
+    position: absolute;
+    font-size: 1rem;
+    color: #1a73e8;
+    animation: card-heart-float 2s ease-out forwards;
+}
+
+@keyframes card-heart-float {
+    0% {
+        transform: translate(0, 0) scale(0.5);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(var(--dx), var(--dy)) scale(1.5);
+        opacity: 0;
+    }
+}
+
+/* 音乐控制按钮 */
+.music-control {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    z-index: 1000;
+    border: 2px solid #1a73e8;
+    transition: all 0.3s ease;
+}
+
+.music-control:hover {
+    background: #1a73e8;
+    transform: scale(1.1);
+}
+
+.music-control:hover .music-icon {
+    color: white;
+}
+
+.music-icon {
+    font-size: 1.5rem;
+    color: #1a73e8;
+    transition: all 0.3s ease;
+}
+
+.music-icon.playing {
+    animation: music-pulse 1.5s infinite;
+}
+
+@keyframes music-pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+@media (max-width: 768px) {
+    .title {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .title-text {
+        align-items: center;
+    }
+    
+    .korean-name {
+        font-size: 3.5rem;
+    }
+    
+    .other-names {
+        font-size: 1.5rem;
+    }
+    
+    .creation-date {
+        font-size: 0.8rem;
+    }
+    
+    .card {
+        width: 180px;
+        padding: 0.8rem;
+    }
+    
+    .korean-message {
+        font-size: 1rem;
+    }
+    
+    .chinese-message {
+        font-size: 0.9rem;
+    }
+    
+    .english-message {
+        font-size: 0.8rem;
+    }
+    
+    .card.center-active {
+        transform: scale(1.2);
+    }
+    
+    .music-control {
+        width: 45px;
+        height: 45px;
+    }
+    
+    .music-icon {
+        font-size: 1.3rem;
+    }
+}
