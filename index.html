@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>승하에게</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;700&family=Ma+Shan+Zheng&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="hearts" id="hearts"></div>
+        <div class="card-hearts" id="cardHearts"></div>
+        
+        <!-- 音乐控制按钮 -->
+        <div class="music-control" id="musicControl">
+            <div class="music-icon" id="musicIcon">♪</div>
+        </div>
+        
+        <div class="title">
+            <div class="title-text">
+                <h1 class="korean-name">승하</h1>
+                <div class="other-names">松河 · SONGHA</div>
+            </div>
+        </div>
+        
+        <!-- 卡片将通过JavaScript动态创建 -->
+    </div>
+
+    <!-- 音频元素 -->
+    <audio id="bgm" loop>
+        <source src="assets/BGM.mp3" type="audio/mpeg">
+        您的浏览器不支持音频元素。
+    </audio>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
